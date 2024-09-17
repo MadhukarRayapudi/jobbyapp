@@ -2,6 +2,8 @@
   background-image: url('https://assets.ccbp.in/frontend/react-js/home-lg-bg.png');
   background-size: cover;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .home-intro {

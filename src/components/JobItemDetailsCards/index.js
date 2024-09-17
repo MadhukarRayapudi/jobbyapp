@@ -21,6 +21,7 @@ class JobItemDetailsCards extends Component {
     searchInput: '',
     checkedBoxes: [],
     salaryFilter: '',
+    locations: [],
   }
 
   componentDidMount() {
@@ -43,7 +44,7 @@ class JobItemDetailsCards extends Component {
       apiStatus: apiStatusConstants.inProgress,
     })
     const jwtToken = Cookies.get('jwt_token')
-    const {searchInput, checkedBoxes, salaryFilter} = this.state
+    const {searchInput, checkedBoxes, salaryFilter, locations} = this.state
     const text = checkedBoxes.join()
     const options = {
       headers: {
@@ -51,7 +52,7 @@ class JobItemDetailsCards extends Component {
       },
       method: 'GET',
     }
-    const apiUrl = `https://apis.ccbp.in/jobs?employment_type=${text}&minimum_package=${salaryFilter}&search=${searchInput}`
+    const apiUrl = `https://apis.ccbp.in/jobs?employment_type=${text}&minimum_package=${salaryFilter}&search=${searchInput}&location=${locations}`
     console.log(apiUrl)
     const response = await fetch(apiUrl, options)
     if (response.ok === true) {
@@ -174,21 +175,34 @@ class JobItemDetailsCards extends Component {
     )
   }
 
+  selectedLocations = id => {
+    this.setState(
+      prev => ({
+        locations: [...prev.locations, id],
+      }),
+      this.getJobItemDetails,
+    )
+  }
+
   render() {
     const {searchInput} = this.state
-    const {salaryRangesList, employmentTypesList} = this.props
+    const {salaryRangesList, employmentTypesList, LocationsList} = this.props
     console.log(employmentTypesList)
     return (
       <div className="job-card">
         <div className="side-bar">
           <ProfileCard />
           <hr className="line" />
-          <FilterGroup
-            salaryRangesList={salaryRangesList}
-            employmentTypesList={employmentTypesList}
-            selectedCheckBox={this.updateCheckboxes}
-            updateSalary={this.updateSalary}
-          />
+          <div className="filters-container">
+            <FilterGroup
+              salaryRangesList={salaryRangesList}
+              employmentTypesList={employmentTypesList}
+              selectedCheckBox={this.updateCheckboxes}
+              selectedLocations={this.selectedLocations}
+              updateSalary={this.updateSalary}
+              LocationsList={LocationsList}
+            />
+          </div>
         </div>
 
         <div className="results-container">

@@ -45,6 +45,23 @@ const salaryRangesList = [
   },
 ]
 
+const LocationsList = [
+  {
+    label: 'Hyderabad',
+    id: 'HYDERABAD',
+  },
+  {
+    label: 'Bangalore',
+    id: 'BANGALORE',
+  },
+  {
+    label: 'Chennai',
+    id: 'CHENNAI',
+  },
+  {label: 'Delhi', id: 'DELHI'},
+  {label: 'Mumbai', id: 'MUMBAI'},
+]
+
 const App = () => (
   <Switch>
     <ProtectedRoute exact path="/" component={Home} />
@@ -56,6 +73,7 @@ const App = () => (
         <Jobs
           employmentTypesList={employmentTypesList}
           salaryRangesList={salaryRangesList}
+          LocationsList={LocationsList}
         />
       )}
     />

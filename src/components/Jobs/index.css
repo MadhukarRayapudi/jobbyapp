@@ -1,6 +1,8 @@
 .Job-container {
   min-height: 100vh;
   background-color: black;
+  display: flex;
+  flex-direction: column;
 }
 .jobs-list-order {
   list-style-type: none;

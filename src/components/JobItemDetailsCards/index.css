@@ -18,6 +18,11 @@
   max-width: 330px;
 }
 
+.filters-container {
+  position: sticky;
+  top: 0;
+}
+
 .no-products-view {
   display: flex;
   flex-direction: column;
